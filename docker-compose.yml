@@ -1,0 +1,19 @@
+version: '3'
+networks:
+  database-network:
+    external: false
+    name: database-network
+
+services:
+  database-service:
+    image: postgres:latest
+    container_name: database-service
+    restart: always
+    port:
+      - "8080:8080"
+    environment:
+      - POSTGRES_PASSWORD=example
+    volume:
+      - ./data:/var/lib/postgresql/data
+    network:
+      - database-network
